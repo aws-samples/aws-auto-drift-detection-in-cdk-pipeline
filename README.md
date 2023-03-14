@@ -1,6 +1,6 @@
 # Auto Drift Detection CDK Pipelines
 
-## Project deploys a CDK Pipeline which has integrated Drift Detection in the form of a pre-deployment step.
+## Project deploys a CDK Pipeline which has integrated Drift Detection in the form of a pre-deployment step. This is an implementaton of the solution depicted in the blog [here](placeholder link).
 
 ## License
 
@@ -17,7 +17,7 @@ This library is licensed under the MIT-0 License. See the LICENSE file.
 
 Before proceeding any further, you need to identify and designate an AWS account to deploy the solution. You also need to create an AWS account profile in `~/.aws/credentials` for the designated AWS account, if you don’t already have one. The profile needs to have sufficient permissions to run an [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) (AWS CDK) stack. It should be your private profile and only be used during the course of this blog. So, it should be fine if you want to use admin privileges. Don’t share the profile details, especially if it has admin privileges. I recommend removing the profile when you’re finished with the testing. For more information about creating an AWS account profile, see [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 
-This project has a dependency on its pre-requiste project [here](https://gitlab.aws.dev/goldmine/auto-drift-detection-cdk-pipelines-prereq/-/tree/main). Please follow the deployment instructions for the pre-requisite project as specified in the [README.md](https://gitlab.aws.dev/goldmine/auto-drift-detection-cdk-pipelines-prereq/-/blob/main/README.md#deployment-using-cdk) before proceeding.
+This project has a dependency on its pre-requiste project [here](https://github.com/aws-samples/aws-auto-drift-detection-in-cdk-pipeline-prereq). Please follow the deployment instructions for the pre-requisite project as specified in the [README.md](https://github.com/aws-samples/aws-auto-drift-detection-in-cdk-pipeline-prereq/blob/main/README.md#deployment-using-cdk) before proceeding.
 
 ## Solution Architecture
 
