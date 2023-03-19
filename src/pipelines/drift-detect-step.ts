@@ -37,7 +37,6 @@ export class DriftDetectionStep
 	implements pipelines.ICodePipelineActionFactory
 {
 	constructor(
-		// private readonly input: FileSet,
 		private readonly stackName: string,
 		private readonly account: string,
 		private readonly region: string
