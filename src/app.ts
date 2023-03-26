@@ -29,7 +29,7 @@ const stackPrefix: string = appName ? `${appName}` : 'demo';
 
 new PipelineStack(app, 'PipelineStack', {
 	stackName: `${stackPrefix}-pipeline`,
-	description: 'Deploys custom resource backed by codebuild',
+	description: 'Deploys CDK pipeline with CodeCommit source repo',
 });
 
 // Tag all stacks
