@@ -17,16 +17,15 @@
  */
 
 'use strict';
-import { Construct } from 'constructs';
-import { StackProps } from 'aws-cdk-lib';
-import { aws_codecommit as codecommit } from 'aws-cdk-lib';
-import { NagSuppressions } from 'cdk-nag';
+import { StackProps, aws_codecommit as codecommit } from 'aws-cdk-lib';
 import {
 	CodePipeline,
 	CodePipelineSource,
 	ShellStep,
 	Step,
 } from 'aws-cdk-lib/pipelines';
+import { NagSuppressions } from 'cdk-nag';
+import { Construct } from 'constructs';
 import { DemoStage } from '../stacks/demo/stage';
 import { BaseStack } from '../utils/base-stack';
 import { DriftDetectionStep } from './drift-detect-step';
@@ -140,18 +139,6 @@ export class PipelineStack extends BaseStack {
 						{
 							regex:
 								'/^Resource::arn:<AWS::Partition>:codebuild:<AWS::Region>:<AWS::AccountId>:report-group/(.*)\\*$/g',
-						},
-					],
-				},
-				{
-					id: 'AwsSolutions-IAM5',
-					reason:
-						'All resources in the permissions are controlled by CDK pipeline per its needs and best practices.\
-						Pipeline action needs appropriate access to SSM Param containing ARN of the lambda that implements the action',
-					appliesTo: [
-						{
-							regex:
-								'/^Resource::<SsmParameterValueDEMODRIFTDETECTIONLAMBDAINITIATEDRIFTDETECTARN(.*)\\*$/g',
 						},
 					],
 				},
