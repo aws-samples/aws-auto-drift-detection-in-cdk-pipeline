@@ -17,17 +17,19 @@
  */
 
 'use strict';
-import { aws_codepipeline_actions as cpactions } from 'aws-cdk-lib';
-import { aws_codepipeline as codepipeline } from 'aws-cdk-lib';
-import { pipelines as pipelines } from 'aws-cdk-lib';
-import { aws_ssm as ssm } from 'aws-cdk-lib';
-import { aws_lambda as lambda } from 'aws-cdk-lib';
+import {
+	aws_codepipeline as codepipeline,
+	aws_codepipeline_actions as codepipeline_actions,
+	aws_lambda as lambda,
+	pipelines,
+	aws_ssm as ssm,
+} from 'aws-cdk-lib';
 import {
 	CodePipelineActionFactoryResult,
 	ProduceActionOptions,
 	Step,
 } from 'aws-cdk-lib/pipelines';
-import { SSM_PARAM_DRIFT_DETECT_LAMBDA_ARN } from '../utils/cdk-utils';
+import { SSM_PARAM_DRIFT_DETECT_LAMBDA_ARN } from 'src/utils/cdk-utils';
 
 /**
  * Drift detection step definition.
@@ -50,7 +52,7 @@ export class DriftDetectionStep
 	): CodePipelineActionFactoryResult {
 		// Define the configuraton for the action that is added to the pipeline.
 		stage.addAction(
-			new cpactions.LambdaInvokeAction({
+			new codepipeline_actions.LambdaInvokeAction({
 				actionName: options.actionName,
 				runOrder: options.runOrder,
 				lambda: lambda.Function.fromFunctionArn(
