@@ -18,10 +18,10 @@
  */
 
 'use strict';
-import 'source-map-support/register';
-import { App, Tags, Aspects } from 'aws-cdk-lib';
+import { App, Aspects, Tags } from 'aws-cdk-lib';
 import { AwsSolutionsChecks } from 'cdk-nag';
-import { PipelineStack } from './pipelines/stack';
+import 'source-map-support/register';
+import { PipelineStack } from 'src/pipelines/stack';
 
 const app = new App();
 const appName = app.node.tryGetContext('appName');

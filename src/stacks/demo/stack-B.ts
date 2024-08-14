@@ -17,9 +17,8 @@
  */
 
 'use strict';
+import { RemovalPolicy, Stack, StackProps, aws_s3 as s3 } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
-import { aws_s3 as s3 } from 'aws-cdk-lib';
 
 /**
  * Stack for demo purposes
@@ -30,7 +29,7 @@ export class DemoStackB extends Stack {
 
 		/********************************** Demo Bucket *********************************/
 		// Bucket deployed for demo purposes
-		new s3.Bucket(this, 'DemoBucket2', {
+		new s3.Bucket(this, 'DemoBucketB', {
 			bucketName: `${this.node.tryGetContext('appName')}-b-${this.account}-${
 				this.region
 			}`,

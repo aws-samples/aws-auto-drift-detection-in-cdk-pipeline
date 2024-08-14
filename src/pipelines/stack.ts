@@ -17,19 +17,18 @@
  */
 
 'use strict';
-import { Construct } from 'constructs';
-import { StackProps } from 'aws-cdk-lib';
-import { aws_codecommit as codecommit } from 'aws-cdk-lib';
-import { NagSuppressions } from 'cdk-nag';
+import { StackProps, aws_codecommit as codecommit } from 'aws-cdk-lib';
 import {
 	CodePipeline,
 	CodePipelineSource,
 	ShellStep,
 	Step,
 } from 'aws-cdk-lib/pipelines';
-import { DemoStage } from '../stacks/demo/stage';
-import { BaseStack } from '../utils/base-stack';
-import { DriftDetectionStep } from './drift-detect-step';
+import { NagSuppressions } from 'cdk-nag';
+import { Construct } from 'constructs';
+import { DriftDetectionStep } from 'src/pipelines/drift-detect-step';
+import { DemoStage } from 'src/stacks/demo/stage';
+import { BaseStack } from 'src/utils/base-stack';
 
 /**
  * Stack to deploy common components and lambda layers required for the project
@@ -84,8 +83,8 @@ export class PipelineStack extends BaseStack {
 				{
 					id: 'AwsSolutions-IAM5',
 					reason:
-						'CDK Pipeline artifacts S3 bucket permissons are managed by pipeline internally.\
-						Also, they are needed for proper functoning of CDK pipeline',
+						'CDK Pipeline artifacts S3 bucket permissions are managed by pipeline internally.\
+						Also, they are needed for proper functioning of CDK pipeline',
 					appliesTo: [
 						'Action::s3:GetObject*',
 						'Action::s3:GetBucket*',
@@ -114,7 +113,7 @@ export class PipelineStack extends BaseStack {
 					id: 'AwsSolutions-IAM5',
 					reason:
 						'All resources in the permissions are controlled by CDK pipeline per its needs and best practices.\
-						Pipeline needs approprate access to write logs to all CW log groups and push build reports of specific codebuild projects that are part of the pipeline.\
+						Pipeline needs appropriate access to write logs to all CW log groups and push build reports of specific codebuild projects that are part of the pipeline.\
 						Secondly there is no way to know ahead of time the log stream and report names created at runtime.',
 					appliesTo: [
 						{
@@ -140,18 +139,6 @@ export class PipelineStack extends BaseStack {
 						{
 							regex:
 								'/^Resource::arn:<AWS::Partition>:codebuild:<AWS::Region>:<AWS::AccountId>:report-group/(.*)\\*$/g',
-						},
-					],
-				},
-				{
-					id: 'AwsSolutions-IAM5',
-					reason:
-						'All resources in the permissions are controlled by CDK pipeline per its needs and best practices.\
-						Pipeline action needs appropriate access to SSM Param containing ARN of the lambda that implements the action',
-					appliesTo: [
-						{
-							regex:
-								'/^Resource::<SsmParameterValueDEMODRIFTDETECTIONLAMBDAINITIATEDRIFTDETECTARN(.*)\\*$/g',
 						},
 					],
 				},
